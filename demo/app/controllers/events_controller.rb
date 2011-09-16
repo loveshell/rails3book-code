@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :find_event, :only => [ :show, :edit, :update, :destroy]
   
   def index
-    @events = Event.all
+    @events = Event.page(params[:page]).per(5)
   end
   
   def new
