@@ -13,6 +13,7 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
     @event.save
 
+    flash[:notice] = "event was successfully created"
     redirect_to :action => :index
   end
   
@@ -29,6 +30,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.update_attributes(params[:event])
 
+    flash[:notice] = "event was successfully updated"
     redirect_to :action => :show, :id => @event
   end
   
@@ -36,6 +38,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
+    flash[:alert] = "event was successfully deleted"
     redirect_to :action => :index
   end
   
