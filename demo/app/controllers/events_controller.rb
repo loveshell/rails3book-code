@@ -1,6 +1,8 @@
 # encoding: utf-8
 class EventsController < ApplicationController
   
+  before_filter :find_event, :only => [ :show, :edit, :update, :destroy]
+  
   def index
     @events = Event.all
   end
@@ -18,16 +20,13 @@ class EventsController < ApplicationController
   end
   
   def show
-    @event = Event.find(params[:id])
     @page_title = @event.name
   end
   
   def edit
-    @event = Event.find(params[:id])
   end
   
   def update
-    @event = Event.find(params[:id])
     @event.update_attributes(params[:event])
 
     flash[:notice] = "event was successfully updated"
@@ -35,11 +34,16 @@ class EventsController < ApplicationController
   end
   
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     flash[:alert] = "event was successfully deleted"
     redirect_to :action => :index
   end
   
+  protected
+
+  def find_event
+    @event = Event.find(params[:id])
+  end
+    
 end
