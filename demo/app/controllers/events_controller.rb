@@ -1,6 +1,7 @@
 # encoding: utf-8
 class EventsController < ApplicationController
   
+  before_filter :authenticate_user!
   before_filter :find_event, :only => [ :show, :edit, :update, :destroy]
   
   def index
