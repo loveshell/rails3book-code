@@ -1,6 +1,9 @@
 Demo::Application.routes.draw do
   
-  resources :events
+  resources :events do
+    resources :attendees, :controller => 'event_attendees'
+  end
+  
   resources :people
 
   get "welcome" => "welcome#index"
