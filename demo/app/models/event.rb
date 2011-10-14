@@ -12,4 +12,6 @@ class Event < ActiveRecord::Base
   
   delegate :name, :to => :category, :prefix => true, :allow_nil => true
   
+  accepts_nested_attributes_for :location, :allow_destroy => true, :reject_if => :all_blank
+  
 end
