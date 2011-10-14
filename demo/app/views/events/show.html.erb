@@ -1,7 +1,16 @@
 <h2><%= @event.name %></h2>
 
+<p>Status: <%= @event.status %></p>
 <p>Category: <%= @event.category_name %><p>
   
 <%= simple_format(@event.description) %>
  
+<p>
+  <% if @event.closed? %>
+    <%= link_to '[Open]', event_state_path(@event ), :method => :post %>
+  <% else %>
+    <%= link_to '[Close]', event_state_path(@event), :method => :delete %>
+  <% end %>
+</p>
+
 <p><%= link_to 'Back to index', events_path %></p>

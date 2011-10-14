@@ -1,6 +1,7 @@
 Demo::Application.routes.draw do
   
   resources :events do
+    resource :state, :controller => 'event_states'
     resource :location, :controller => 'event_locations'
     resources :attendees, :controller => 'event_attendees'
   end
